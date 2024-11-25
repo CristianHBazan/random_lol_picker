@@ -1,0 +1,5 @@
+package com.bazan.cristian.random_lol_picker
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity()
