@@ -1,6 +1,6 @@
 # random_lol_picker
 
-What champion i use for my next game? Ask it to the luck with this random champion picker
+A new Flutter project.
 
 ## Getting Started
 

@@ -10,10 +10,12 @@ class RandomChamp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    List<Champion> pickableChamps = [];
-    for(int i=0; i< utils.champions.length; i++){
+    double screenHeight = MediaQuery.of(context).size.height;
 
-      Champion currentChampion = utils.champions[i];
+    List<Champion> pickableChamps = [];
+    for(int i=0; i< Utils.champions.length; i++){
+
+      Champion currentChampion = Utils.champions[i];
       if(currentChampion.isPickable){
 
         pickableChamps.add(currentChampion);
@@ -27,7 +29,7 @@ class RandomChamp extends StatelessWidget {
       selectedChamp = pickableChamps[random.nextInt(pickableChamps.length)];
     } else{
 
-      selectedChamp = Champion(0, "SelectChamps");
+      selectedChamp = Champion(0, "Select any Champ");
     }
 
 
@@ -36,46 +38,56 @@ class RandomChamp extends StatelessWidget {
       body: SingleChildScrollView(
         child: Stack(
           children: [
-            Image(
-              image: AssetImage("assets/images/${selectedChamp.getName}.jpg"),
-              fit: BoxFit.contain,
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Center(
-                  child: Container(
-                    color: Colors.black,
-                    child: Text(selectedChamp.getName, style: const TextStyle(color: Colors.white,fontSize: 35), ),
-                  ),
+            SizedBox(
+              height: screenHeight,
+              child: Center(
+                child: Image(
+                  image: AssetImage(selectedChamp.getName != "Select any Champ" ? "assets/images/${selectedChamp.getName}.jpg" : "assets/images/${selectedChamp.getName}.gif"),
+                  fit: BoxFit.fill,
                 ),
-                Center(
-                  child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/charge');
-                      },
-                      child: Column(
-                        children: [
-                          const Text("Give me other champion"),
-                          Text(String.fromCharCode(0x1F300))
-                        ],
-                      )
-                  ),
-                ),
-              ],
+              ),
             ),
-            Center(
-              child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/');
-                  },
-                  child: Column(
-                    children: [
-                      const Text("Return to start"),
-                      Text(String.fromCharCode(0x1F519))
-                    ],
-                  )
+            SizedBox(
+              height: screenHeight-10,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Center(
+                    child: Container(
+                      color: Colors.black,
+                      child: Text(selectedChamp.getName, style: const TextStyle(color: Colors.white,fontSize: 35), ),
+                    ),
+                  ),
+                  const SizedBox( height: 10,),
+                  Center(
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.popAndPushNamed(context, '/charge');
+                        },
+                        child: Column(
+                          children: [
+                            const Text("Give me other champion"),
+                            Text(String.fromCharCode(0x1F300))
+                          ],
+                        )
+                    ),
+                  ),
+                  const SizedBox( height: 10,),
+                  Center(
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.popAndPushNamed(context, '/');
+                        },
+                        child: Column(
+                          children: [
+                            const Text("Return to start"),
+                            Text(String.fromCharCode(0x1F519))
+                          ],
+                        )
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

@@ -1,9 +1,17 @@
 import 'package:random_lol_picker/models/champion.dart';
-class utils{
+class Utils{
 
   static List<Champion> getChamps(){
 
     return champions;
+  }
+
+  static void allPickable(bool condition){
+
+    for(int i=0; i<champions.length; i++){
+
+      champions[i].isPickable=condition;
+    }
   }
 
   static List<Champion> champions = [
@@ -100,7 +108,7 @@ class utils{
     Champion(91, "Nidalee"),
     Champion(92, "Nilah"),
     Champion(93, "Nocturne"),
-    Champion(94, "Nunu y Willump"),
+    Champion(94, "Nunu"),
     Champion(95, "Olaf"),
     Champion(96, "Orianna"),
     Champion(97, "Ornn"),

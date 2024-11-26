@@ -7,7 +7,18 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Random Champion", style: TextStyle(color: Colors.white),),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text("Random Champion", style: TextStyle(color: Colors.white)),
+            IconButton(
+                onPressed: () {Navigator.pushNamed(context, '/about');},
+                icon: const CircleAvatar(
+                    child: Text("?", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),)
+                )
+            )
+          ],
+        ),
         backgroundColor: Colors.indigo,
       ),
       body: Center(

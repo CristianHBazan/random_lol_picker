@@ -19,7 +19,35 @@ class _EditPreferencesState extends State<EditPreferences> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Preferences", style: TextStyle(color: Colors.white),),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text("Preferences", style: TextStyle(color: Colors.white),),
+            Row(
+              children: [
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      Utils.allPickable(false);
+                    });
+                  },
+                  style: TextButton.styleFrom(backgroundColor: Colors.lightBlueAccent),
+                  child: const Text("NO"),
+                ),
+                const SizedBox(width: 5,),
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      Utils.allPickable(true);
+                    });
+                  },
+                  style: TextButton.styleFrom(backgroundColor: Colors.redAccent),
+                  child: const Text("YES"),
+                ),
+              ],
+            )
+          ],
+        ),
         backgroundColor: Colors.indigo,
       ),
       body: Scrollbar(
@@ -28,10 +56,10 @@ class _EditPreferencesState extends State<EditPreferences> {
         thumbVisibility: true,
         child: ListView.builder(
           controller: controller,
-          itemCount: utils.getChamps().length,
+          itemCount: Utils.getChamps().length,
           itemBuilder: (BuildContext context, int index) {
         
-            final champ = utils.getChamps()[index];
+            final champ = Utils.getChamps()[index];
         
           return Column(
             children: [

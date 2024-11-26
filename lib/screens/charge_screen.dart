@@ -13,7 +13,7 @@ class _ChargeScreenState extends State<ChargeScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 2), () {
-      Navigator.pushNamed(context, '/randomChamp');
+      Navigator.popAndPushNamed(context, '/randomChamp');
     });
   }
 
@@ -21,9 +21,16 @@ class _ChargeScreenState extends State<ChargeScreen> {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-          child: CircularProgressIndicator(
-            strokeWidth: 15,
-            strokeAlign: 10,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CircularProgressIndicator(
+                strokeWidth: 15,
+                strokeAlign: 10,
+              ),
+              Text("Your champion is...", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),)
+            ],
           )),
     );
   }

@@ -19,7 +19,8 @@ class MyApp extends StatelessWidget {
         '/': (context) => const HomeScreen(),
         '/editPreferences': (context) => const EditPreferences(),
         '/charge': (context) => const ChargeScreen(),
-        '/randomChamp': (context) => const RandomChamp()
+        '/randomChamp': (context) => const RandomChamp(),
+        '/about': (context) => const AboutScreen()
       }
     );
   }
